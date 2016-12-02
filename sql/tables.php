@@ -17,3 +17,12 @@ CREATE TABLE Tweets(
         FOREIGN KEY(user_id) references Users(id) on delete cascade
         );
 
+CREATE TABLE Comments(
+        id int(11) unsigned not null auto_increment,
+        user_id int(11) unsigned not null,
+        post_id int(11) unsigned not null,
+        creation_date datetime,
+        text varchar(256) not null,
+        PRIMARY KEY(id),
+        FOREIGN KEY(post_id) references Tweets(id) on delete cascade
+        );

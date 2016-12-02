@@ -10,13 +10,13 @@
             <h1>Create Account:</h1>
         </div>
         <form action="#" method="POST">
-            <input type="text" name="username" placeholder="Username">
-            <br>
-            <input type="email" name="email" placeholder="email">
-            <br>
-            <input type="password" name="password" placeholder="password">
-            <br>
-            <input type="submit" value="Create Account">
+            <input type="text" name="username" placeholder="Username"/>
+            <br/>
+            <input type="email" name="email" placeholder="email"/>
+            <br/>
+            <input type="password" name="password" placeholder="password"/>
+            <br/>
+            <input type="submit" value="Create Account"/>
         </form>
         
         <?php
@@ -42,12 +42,14 @@
         $newUser->setUsername($username);
         $newUser->setPassword($password);
         if($newUser->saveToDB($db)){
-            echo "User is saved.";
+            echo '<span style="color:green">User is saved.</span>';
         }else{
-            echo "User saving failed";
+            echo '<span style="color:red">User saving failed.Use another email.</span>';
         }
         
 
         ?>
+        <br/>
+        <a href="index.php">Go to the logging Page</a>
     </body>
 </html>

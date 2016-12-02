@@ -5,7 +5,7 @@ $db=new mysqli('localhost', 'root', 'coderslab', 'Twitter');
 if($db->connect_error){
     die("Connection failed. Error: ".$db->connect_error);
 }else{
-    echo "Connected.<br><br>";
+//    echo "Connected.<br><br>";
 }
 
 
@@ -83,7 +83,7 @@ class Tweet{
     }
     
     static public function loadAllTweetsbyUserId(mysqli $connection, $userId){
-        $sql = "SELECT * FROM Tweets WHERE user_id=$userId";
+        $sql = "SELECT * FROM Tweets WHERE user_id=$userId ORDER BY creation_date DESC";
         $ret =[];
         
         $result = $connection->query($sql);
@@ -102,7 +102,7 @@ class Tweet{
     }
     
     static public function loadAllTweets(mysqli $connection){
-        $sql = "SELECT * FROM Tweets";
+        $sql = "SELECT * FROM Tweets ORDER BY creation_date DESC";
         $ret=[];
         
         $result=$connection->query($sql);
