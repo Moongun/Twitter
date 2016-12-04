@@ -37,14 +37,18 @@
         include '../src/User.php';
         
         //ADDING NEW USER
-        $newUser= new User();
-        $newUser->setEmail($email);
-        $newUser->setUsername($username);
-        $newUser->setPassword($password);
-        if($newUser->saveToDB($db)){
-            echo '<span style="color:green">User is saved.</span>';
-        }else{
-            echo '<span style="color:red">User saving failed.Use another email.</span>';
+        if (isset($_POST['username']) == true && 
+            isset($_POST['email']) == true && 
+            isset($_POST['password']) == true) {
+            $newUser= new User();
+            $newUser->setEmail($email);
+            $newUser->setUsername($username);
+            $newUser->setPassword($password);
+            if($newUser->saveToDB($db)){
+                echo '<span style="color:green">User is saved.</span>';
+            }else{
+                echo '<span style="color:red">User saving failed.Use another email.</span>';
+            }
         }
         
 

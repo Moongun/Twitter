@@ -24,7 +24,7 @@ if(!isset($_SESSION['logged'])){
 echo $_SESSION['username'].', welcome to Twitter!';
 ?>
             <ul>
-                <li><a href="UserPage.php">User Page</a></li>
+                <li><a href="yourProfile.php">Your Profile</a></li>
                 <li><a href="logout.php">logout</a></li>
             </ul>
             

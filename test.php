@@ -24,3 +24,6 @@ var_dump(password_verify($haslo, $hashowaneHaslo));
 
 $data=date("Y-m-d H:i:s");
 echo $data;
+
+
+

@@ -22,7 +22,7 @@ CREATE TABLE Comments(
         user_id int(11) unsigned not null,
         post_id int(11) unsigned not null,
         creation_date datetime,
-        text varchar(256) not null,
+        text varchar(60) not null,
         PRIMARY KEY(id),
         FOREIGN KEY(post_id) references Tweets(id) on delete cascade
         );
