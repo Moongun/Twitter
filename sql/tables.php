@@ -26,3 +26,15 @@ CREATE TABLE Comments(
         PRIMARY KEY(id),
         FOREIGN KEY(post_id) references Tweets(id) on delete cascade
         );
+
+CREATE TABLE Messages(
+        id int(11) unsigned not null auto_increment,
+        send_user_id int(11) unsigned not null,
+        receive_user_id int(11) unsigned not null,
+        creation_date datetime,
+        text varchar(255) not null,
+        seen int(11) unsigned not null,
+        PRIMARY KEY(id),
+        FOREIGN KEY(send_user_id) references Users(id),
+        FOREIGN KEY(receive_user_id) references Users(id)
+        );

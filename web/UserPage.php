@@ -7,11 +7,12 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>TWITTER</title>
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
+        <div>
+            <h1><?php echo $_SESSION['temporary'] ?> Page </h1>
+        </div>
+        
     </body>
 </html>

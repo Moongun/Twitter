@@ -62,10 +62,12 @@ echo $_SESSION['username'].', welcome to Twitter!';
 
         echo"<table style='border:solid 1px'>";
         foreach ($tweets as $row) {
+            $_SESSION['temporary']= $row->getUserId();
             echo '<tr>
             <td style="border:solid 1px ">' . $row->getUserId() . '</td>
             <td style="border:solid 1px ">' . $row->getText() . '</td>
             <td style="border:solid 1px ">' . $row->getCreationDate() . '</td>
+            <td style="border:solid 1px "><a href="UserPage.php"><button name="goToUser">go to '.$row->getUserId().'</button></a></td>
             </tr>';
         }
         echo "</table>";
