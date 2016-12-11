@@ -4,6 +4,7 @@ if(!isset($_SESSION['logged'])){
     header('Location: index.php');
     exit();
 }
+include_once '../src/User.php';
 ?>
 
 
@@ -22,6 +23,9 @@ if(!isset($_SESSION['logged'])){
             
 <?php
 echo $_SESSION['username'].', welcome to Twitter!';
+//$IdUserLogged=$_SESSION['id'];
+//$UserLogged= User::loadUserById($db, $IdUserLogged);
+//echo $UserLogged->getUsername();
 ?>
             <ul>
                 <li><a href="yourProfile.php">Your Profile</a></li>
@@ -62,12 +66,21 @@ echo $_SESSION['username'].', welcome to Twitter!';
 
         echo"<table style='border:solid 1px'>";
         foreach ($tweets as $row) {
-            $_SESSION['temporary']= $row->getUserId();
+            $idUser= $row->getUserId();
+            $username= User::loadUserById($db, $idUser);
             echo '<tr>
-            <td style="border:solid 1px ">' . $row->getUserId() . '</td>
+            <td style="border:solid 1px ">' . $username->getUsername() . '</td>
             <td style="border:solid 1px ">' . $row->getText() . '</td>
             <td style="border:solid 1px ">' . $row->getCreationDate() . '</td>
-            <td style="border:solid 1px "><a href="UserPage.php"><button name="goToUser">go to '.$row->getUserId().'</button></a></td>
+            <td style="border:solid 1px "><form action="TweetPage.php" method="POST">
+                <input type="hidden" name="tweetId" value='.$row->getId().'></input>
+                <input type="submit" name="tweetProfile" value="Show this tweet">
+            </form></td>
+            
+            <td style="border:solid 1px "><form action="createMessage.php" method="GET">
+                <input type="hidden" name="userId" value='.$idUser.'></input>
+                <input type="submit" name="sentMsg" value="send a Message">
+            </form></td>
             </tr>';
         }
         echo "</table>";

@@ -68,7 +68,7 @@ class Tweet{
         $sql = "SELECT * FROM Tweets WHERE id=$id";
         
         $result = $connection->query($sql);
-        if(result == true && $result->num_rows==1){
+        if($result == true && $result->num_rows==1){
             $row=$result->fetch_assoc();
             
             $loadedTweet = new Tweet();

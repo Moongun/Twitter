@@ -75,6 +75,23 @@ class Comment{
         }
         return false;
     }
+    static public function loadAllCommentsByTweetId(mysqli $connection, $tweetId){
+        $sql="SELECT user_id, text, creation_date FROM Comments WHERE post_id=$tweetId";
+        
+        $commets=[];
+        $result=$connection->query($sql);
+        if($result== true && $result->num_rows>0){
+            while($row=$result->fetch_assoc()){
+                $loadedComment=new Comment();
+                $loadedComment->userId=$row['user_id'];
+                $loadedComment->text=$row['text'];
+                $loadedComment->creationDate=$row['creation_date'];
+                $comments[]=$loadedComment;
+            }
+            return $comments;
+        }
+        return false;
+    }
     
     static public function loadCommentById(mysqli $connection, $id){
         $sql = "SELECT * FROM Comments WHERE id=$id";
@@ -135,18 +152,7 @@ class Comment{
 //        return $ret;
 //    }
     
-    public function delete(mysqli $connection){
-        if($this->id!=-1){
-            $sql = "DELETE FROM Users WHERE id=$this->id";
-            $result=$connection->query($sql);
-            if($result == true){
-                $this->id=-1;
-                return true;
-            }
-            return false;
-        }
-        return true;
-    }
+
     
 }
 

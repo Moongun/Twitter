@@ -1,14 +1,4 @@
 <?php
-//+-----------------+------------------+------+-----+---------+----------------+
-//| Field           | Type             | Null | Key | Default | Extra          |
-//+-----------------+------------------+------+-----+---------+----------------+
-//| id              | int(11) unsigned | NO   | PRI | NULL    | auto_increment |
-//| send_user_id    | int(11) unsigned | NO   | MUL | NULL    |                |
-//| receive_user_id | int(11) unsigned | NO   | MUL | NULL    |                |
-//| creation_date   | datetime         | YES  |     | NULL    |                |
-//| text            | varchar(256)     | NO   |     | NULL    |                |
-//| seen            | int(11) unsigned | NO   |     | NULL    |                |
-//+-----------------+------------------+------+-----+---------+----------------+
 
 $db=new mysqli('localhost', 'root', 'coderslab', 'Twitter');
 
@@ -53,6 +43,10 @@ class Message{
         $this->seen = 1;
     }
     
+    function setCreationDate($creationDate) {
+        $this->creationDate = $creationDate;
+    }
+
     function getSendId() {
         return $this->sendId;
     }
@@ -68,10 +62,13 @@ class Message{
     function getSeen() {
         return $this->seen;
     }
+    
+    function getCreationDate() {
+        return $this->creationDate;
+    }
 
     
-    
-    public function saveMessageToDB(mysqli $connection){
+    static public function saveMessageToDB(mysqli $connection){
         if($this->id==-1){
             $sql="INSERT INTO Messages (send_user_id, receive_user_id, text, seen, creation_date) VALUES ($this->sendId,$this->receiveId,'$this->msg',$this->seen,'$this->creationDate')";
                   

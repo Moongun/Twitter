@@ -34,6 +34,11 @@ if($db->connect_error){
                 $_SESSION['email']=$usr['email'];
                 $_SESSION['username']=$usr['username'];
                 $_SESSION['hashed_password']=$usr['hashed_password'];
+                
+//                $allUsers=  User::loadAllUsers($db);
+//                foreach ($allUsers as $user){
+//                    
+//                }
 
                 unset($_SESSION['blad']);
                 $result->free_result();

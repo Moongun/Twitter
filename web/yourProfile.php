@@ -24,6 +24,8 @@ echo $_SESSION['username'].', welcome to Twitter!'
                 <li><a href="MainPage.php">Main Page</a></li>
                 <li><a href="#edit">Edit your Profile</a></li>
                 <li><a href="logout.php">logout</a></li>
+                <li><a href="messagesPage.php">your Messages</a></li>
+                <li><a href="createMessage.php">create new Message</a></li>
             </ul>
             
         </div>
