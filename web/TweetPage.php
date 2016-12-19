@@ -15,7 +15,7 @@ session_start();
         ?>
         <ul>
             <li><a href="MainPage.php">Main Page</a></li>
-            <li><a href="#edit">Edit your Profile</a></li>
+            <li><a href="yourProfile.php">Edit your Profile</a></li>
             <li><a href="logout.php">logout</a></li>
             <li><a href="messagesPage.php">your Messages</a></li>
             <li><a href="createMessage.php">create new Message</a></li>
@@ -69,28 +69,24 @@ session_start();
                     <input type="submit" name="sendComment" value="Send your Comment">
             </form>
         </div>
-        
         <?php
 //      CREATING NEW COMMENT
-        if($_SERVER['REQUEST_METHOD']=='POST'){
-            if(!empty($_POST['sendComment'])){
-                $newCommentText=$_POST['Comment'];
-                
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if (!empty($_POST['sendComment'])) {
+                $newCommentText = $_POST['Comment'];
+
                 $newComment = new Comment();
                 $newComment->setUserId($_SESSION['id']);
-                $newComment->setPostId($tweetId);
+                $newComment->setPostId($_SESSION['tweetId']);
                 $newComment->setText($newCommentText);
                 $newComment->setCreationDate(date("Y-m-d H:i:s"));
-                if($newComment->saveToDB($db)){
-                    echo "New Comment added.";
-                }else{
-                    echo "Cannot to insert new comment.";
+                if ($newComment->saveToDB($db)) {
+                    header('Location: ../web/TweetPage.php');
+                } else {
+                    echo "Cannot insert new comment.";
                 }
-                
             }
         }
         ?>
-        
-        
     </body>
 </html>

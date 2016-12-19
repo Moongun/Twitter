@@ -23,6 +23,10 @@ if(isset($_SESSION['logged']) && $_SESSION['logged'] == true){
         if(isset($_SESSION['blad'])){
             echo $_SESSION['blad'];
         }
+        
+        if(isset($_SESSION['noUser'])){
+            echo $_SESSION['noUser'];
+        }
         ?>
         
         <form action="../src/logging.php" method="POST">
